@@ -1,33 +1,42 @@
-
 /**
  * Write a description of class Investigador here.
  *
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Researcher
-{
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class Investigador
-     */
-    public Investigador()
+    public class Researcher
     {
-        // initialise instance variables
-        x = 0;
-    }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+        public int id;
+        public String specialty;
+        public String name;
+        
+        public Researcher(String specialty, String name){
+            this.specialty = specialty;
+            this.nome = nome;
+        }
+        
+        public int getId(){
+            return id;
+        }
+        
+        public void setId(int id){
+            this.id = id;
+        }
+           
+        public String getSpecialty(){
+            return specialty;
+        }
+        
+        public void setSpecialty(String specialty){
+            this.specialty = specialty;
+        }
+        
+        public String getName(){
+            return name;
+        }
+        
+        public void setName(String name){
+            this.name = name;
+        }
     }
 }
