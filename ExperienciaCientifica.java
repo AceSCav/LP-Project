@@ -43,5 +43,4 @@ public class ExperienciaCientifica
         equipments.add(equipment);
     }
     
-    
 }
