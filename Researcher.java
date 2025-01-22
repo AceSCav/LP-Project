@@ -12,13 +12,13 @@ import java.util.List;
         
         public static int nextId = 1;
         public final int id;
-        public String specialty;
+        public final List<String> specialties;
         public String name;
         public static final List<Researcher> researchers = new ArrayList<>();
         
         public Researcher(String specialty, String name){
             this.id = nextId++;
-            this.specialty = specialty;
+            this.specialties = new ArrayList<>(specialties);
             this.name = name;
         }
         
@@ -26,14 +26,27 @@ import java.util.List;
             return id;
         }
            
-        public String getSpecialty(){
-            return specialty;
+        public List<String> getSpecialties(){
+            return specialties;
         }
         
-        public void setSpecialty(String specialty){
-            this.specialty = specialty;
+        public void addSpecialties(String specialty){
+            if (!specialties.contains(specialty)){
+                specialties.add(specialty);
+                System.out.println("Specialty added: " + specialty);
+            } else {
+                System.out.println("Specialty already exists: " + specialty);
+            }
         }
         
+        public void removeSpecialty(String specialty){
+            if (specialties.remove(specialty)) {
+                System.out.println("Specialty removed: " + specialty);
+            } else {
+                System.out.println("Specialty not found: " + specialty);
+            }
+        }
+            
         public String getName(){
             return name;
         }
@@ -64,4 +77,16 @@ import java.util.List;
                 System.out.println("No researcher found with ID:" + id);
             }
         }
+        
+        public static void listResearchers(){
+            if (researchers.isEmpty()){
+                System.out.println("No researchers are currently in the system.");
+                return;
+            }
+            
+            System.out.println("List of Researchers:");
+            for (Researcher r : researchers){
+                System.out.println("ID: " + r.getId() + ", Name: " + r.getName() + ", Specialties: " + r.getSpecialties());
+            }
+        }   
     }

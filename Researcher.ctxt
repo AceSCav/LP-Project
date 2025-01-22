@@ -17,4 +17,6 @@ comment7.params=specialty\ name
 comment7.target=void\ addResearcher(java.lang.String,\ java.lang.String)
 comment8.params=id
 comment8.target=void\ removeResearcher(int)
-numComments=9
+comment9.params=
+comment9.target=void\ listResearchers()
+numComments=10
