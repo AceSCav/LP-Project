@@ -1,4 +1,6 @@
-
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 /**
  * Write a description of class Equipamento here.
  *
@@ -7,27 +9,51 @@
  */
 public class Equipment
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class Equipamento
-     */
-    public Equipamento()
-    {
-        // initialise instance variables
-        x = 0;
+    public String name;
+    public String type;
+    public LocalDate lastCalibrationDate;
+    public boolean operatingStatus;
+    public List<Equipment> equipmentList;
+    
+    public Equipment(String name, String type, LocalDate lastCalibrationDate, boolean operatingStatus){
+        this.name = name;
+        this.type = type;
+        this.lastCalibrationDate = lastCalibrationDate;
+        this.operatingStatus = operatingStatus;
+        this.equipmentList = new ArrayList<>();
     }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    
+    public String getName(){
+        return name;
     }
+    
+    public void setName(String name){
+        this.name = name;
+    }
+    
+    public String getType(){
+        return type;
+    }
+    
+    public void setType(String type){
+        this.type = type;
+    }
+    
+    public LocalDate getLastCalibrationDate(){
+        return lastCalibrationDate;
+    }
+    
+    public void setLastCalibrationDate(LocalDate lastCalibrationDate){
+        this.lastCalibrationDate = lastCalibrationDate;
+    }
+    
+    public boolean isOperatingStatus(){
+        return operatingStatus;
+    }
+    
+    public void addEquipment(String name, String type, LocalDate lastCalibrationDate, boolean operatingStatus){
+        Equipment newEquipment = new Equipment(name, type, lastCalibrationDate, operatingStatus);
+        equipmentList.add(newEquipment);
+        System.out.println("Equipment added: " + name);
+    }   
 }

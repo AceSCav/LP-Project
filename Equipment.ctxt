@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=Equipment
+comment0.text=\n\ Write\ a\ description\ of\ class\ Equipamento\ here.\n\n\ @author\ (your\ name)\n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=name\ type\ lastCalibrationDate\ operatingStatus
+comment1.target=Equipment(java.lang.String,\ java.lang.String,\ java.time.LocalDate,\ boolean)
+comment2.params=
+comment2.target=java.lang.String\ getName()
+comment3.params=name
+comment3.target=void\ setName(java.lang.String)
+comment4.params=
+comment4.target=java.lang.String\ getType()
+comment5.params=type
+comment5.target=void\ setType(java.lang.String)
+comment6.params=
+comment6.target=java.time.LocalDate\ getLastCalibrationDate()
+comment7.params=lastCalibrationDate
+comment7.target=void\ setLastCalibrationDate(java.time.LocalDate)
+comment8.params=
+comment8.target=boolean\ isOperatingStatus()
+comment9.params=name\ type\ lastCalibrationDate\ operatingStatus
+comment9.target=void\ addEquipment(java.lang.String,\ java.lang.String,\ java.time.LocalDate,\ boolean)
+numComments=10
