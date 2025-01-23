@@ -18,16 +18,19 @@ public class Researcher{
         
     public Researcher(String specialty, String name){
         this.id = nextId++;
-        this.specialties = new ArrayList<>(specialties);
+        this.specialties = new ArrayList<>();
+        this.specialties.add(specialty);
         this.name = name;
     }
         
     public int getId(){
         return id;
-    }
-           
+        }
+
     public String getSpecialties(){
-        return specialties;
+        for(String specialities:specialities){
+            System.out.println(specialities);
+        };
     }
         
     public void addSpecialties(String specialty){
