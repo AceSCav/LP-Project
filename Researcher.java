@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.io.Serializable;
 
 /**
  * Write a description of class Investigador here.
@@ -8,7 +9,7 @@ import java.util.List;
  * @version (a version number or a date)
  */
       
-public class Researcher{
+public class Researcher implements Serializable{
         
     public static int nextId = 1;
     public int id;
@@ -25,13 +26,24 @@ public class Researcher{
         
     public int getId(){
         return id;
+    }
+    public List<String> getSpecialties(){
+        return specialties;
+    }
+    
+    public String getListOfSpecialties() {
+        StringBuilder specialtiesList = new StringBuilder();
+        for (String specialty : specialties) {
+            specialtiesList.append(specialty).append(", "); 
         }
 
-    public String getSpecialties(){
-        for(String specialities:specialities){
-            System.out.println(specialities);
-        };
+        if (specialtiesList.length() > 0) {
+            specialtiesList.setLength(specialtiesList.length() - 2);
+        }
+
+        return specialtiesList.toString();
     }
+    
         
     public void addSpecialties(String specialty){
         if (!specialties.contains(specialty)){
@@ -48,7 +60,7 @@ public class Researcher{
         } else {
                 System.out.println("Specialty not found: " + specialty);
         }
-     }
+    }
             
     public String getName(){
         return name;
@@ -81,15 +93,5 @@ public class Researcher{
         }
     }
         
-    public static void listResearchers(){
-        if (researchers.isEmpty()){
-            System.out.println("No researchers are currently in the system.");
-            return;
-        }
-            
-        System.out.println("List of Researchers:");
-        for (Researcher r : researchers){
-            System.out.println("ID: " + r.getId() + ", Name: " + r.getName() + ", Specialties: " + r.getSpecialties());
-        }
-    }  
+    
 }

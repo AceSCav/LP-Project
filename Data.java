@@ -1,3 +1,5 @@
+import java.time.LocalDateTime;
+import java.io.Serializable;
 
 /**
  * Write a description of class Dados here.
@@ -5,16 +7,33 @@
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Data
+public class Data implements Serializable
 {
-    private int x;
+    private String type;
+    private double value;
+    private LocalDateTime insertDateTime;
+    
+
     /**
      * Constructor for objects of class Dados
      */
-    public Dados()
+    public Data(String type, double value)
     {
-        // initialise instance variables
-        x = 0;
+        this.type = type;
+        this.value = value;
+        insertDateTime = LocalDateTime.now();
     }
-
+    
+    public String getType(){
+        return type;
+    }
+    
+    public double getValue(){
+        return value;
+    }
+    
+    public LocalDateTime getInsertDateTime(){
+        return insertDateTime;
+    }
+    
 }

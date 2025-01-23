@@ -1,13 +1,11 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.Serializable;
 /**
- * Write a description of class Equipamento here.
- *
- * @author (your name)
- * @version (a version number or a date)
+
  */
-public class Equipment
+public class Equipment implements Serializable
 {
     public String name;
     public String type;
@@ -15,12 +13,12 @@ public class Equipment
     public boolean operatingStatus;
     public List<Equipment> equipmentList;
     
-    public Equipment(String name, String type, LocalDate lastCalibrationDate, boolean operatingStatus){
+    public Equipment(String name, String type){
         this.name = name;
         this.type = type;
-        this.lastCalibrationDate = lastCalibrationDate;
-        this.operatingStatus = operatingStatus;
-        this.equipmentList = new ArrayList<>();
+        this.lastCalibrationDate = LocalDate.now();
+        this.operatingStatus = true;
+
     }
     
     public String getName(){
@@ -43,17 +41,30 @@ public class Equipment
         return lastCalibrationDate;
     }
     
-    public void setLastCalibrationDate(LocalDate lastCalibrationDate){
-        this.lastCalibrationDate = lastCalibrationDate;
+    public void calibrateEquipment(LocalDate CalibrationDate){
+        this.lastCalibrationDate = LocalDate.now();
+        if(isOperatingStatus() == true){
+            setOperatingStatus();
+        }
+    }
+    
+    public void setOperatingStatus(){
+        int daysDifference = getLastCalibrationDate().compareTo(LocalDate.now());
+        if(daysDifference<=-30){
+            this.operatingStatus = false;  
+        }else{
+            this.operatingStatus = true;
+        }
     }
     
     public boolean isOperatingStatus(){
+        int daysDifference = getLastCalibrationDate().compareTo(LocalDate.now());
+        if(daysDifference<=-30){
+            this.operatingStatus = false;  
+        }else{
+            this.operatingStatus = true;
+        }
         return operatingStatus;
     }
-    
-    public void addEquipment(String name, String type, LocalDate lastCalibrationDate, boolean operatingStatus){
-        Equipment newEquipment = new Equipment(name, type, lastCalibrationDate, operatingStatus);
-        equipmentList.add(newEquipment);
-        System.out.println("Equipment added: " + name);
-    }   
+      
 }
