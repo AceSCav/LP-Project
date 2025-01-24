@@ -15,7 +15,7 @@ public class Researcher implements Serializable{
     public int id;
     public List<String> specialties;
     public String name;
-    public static final List<Researcher> researchers = new ArrayList<>();
+     
         
     public Researcher(String specialty, String name){
         this.id = nextId++;
@@ -70,28 +70,9 @@ public class Researcher implements Serializable{
         this.name = name;
     }
         
-    public static void addResearcher(String specialty, String name){
-        Researcher newResearcher = new Researcher(specialty, name);
-        researchers.add(newResearcher);
-        System.out.println("Researcher added: " + newResearcher.getName());
-    }
+    
         
-    public static void removeResearcher(int id){
-        boolean found = false;
-              
-        for (int i = 0; i < researchers.size(); i++){
-            if (researchers.get(i).getId() == id){
-                System.out.println("Researcher removed: " + researchers.get(i).getName());
-                researchers.remove(i);
-                found = true;
-                break;
-            }
-        }
-            
-        if (!found){
-            System.out.println("No researcher found with ID:" + id);
-        }
-    }
+    
         
     
 }

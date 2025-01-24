@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=DataDeserializer
+comment1.params=filename
+comment1.target=Data\ deserializeData(java.lang.String)
+comment2.params=filename
+comment2.target=ScientificExperience\ deserializeScientificExperience(java.lang.String)
+comment3.params=filename
+comment3.target=Equipment\ deserializeEquipment(java.lang.String)
+comment4.params=filename
+comment4.target=Researcher\ deserializeResearcher(java.lang.String)
+numComments=5

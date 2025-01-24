@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=DataSerializer
+comment1.params=data\ filename
+comment1.target=void\ serializeData(Data,\ java.lang.String)
+comment2.params=scientificExperience\ filename
+comment2.target=void\ serializeScientificExperience(ScientificExperience,\ java.lang.String)
+comment3.params=researcher\ filename
+comment3.target=void\ serializeResearcher(Researcher,\ java.lang.String)
+comment4.params=equipment\ filename
+comment4.target=void\ serializeEquipment(Equipment,\ java.lang.String)
+numComments=5

@@ -11,14 +11,13 @@ public class Equipment implements Serializable
     public String type;
     public LocalDate lastCalibrationDate;
     public boolean operatingStatus;
-    public List<Equipment> equipmentList;
+    
     
     public Equipment(String name, String type){
         this.name = name;
         this.type = type;
         this.lastCalibrationDate = LocalDate.now();
         this.operatingStatus = true;
-
     }
     
     public String getName(){

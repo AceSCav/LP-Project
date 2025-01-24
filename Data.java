@@ -36,4 +36,11 @@ public class Data implements Serializable
         return insertDateTime;
     }
     
+    public void setType(String type){
+        this.type = type;
+    }
+    
+    public void setValue(double value){
+        this.value = value;
+    }
 }
