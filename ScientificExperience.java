@@ -157,7 +157,6 @@ public class ScientificExperience   implements Serializable, ScientificOperation
         if (!equipmentExists) {
             Equipment newEquipment = new Equipment(name, type);
             equipments.add(newEquipment);
-            equipments.add(newEquipment);
             System.out.println("Equipment " + name + " added.");
         } else {
 
@@ -282,12 +281,12 @@ public class ScientificExperience   implements Serializable, ScientificOperation
             report.append("  No researchers are participating in this experience.\n");
         } else {
             for (Researcher researcher : researchers) {
-                report.append("  - Specialties: ").append(researcher.getName()).append("\n");
-                report.append("    Name: ");
+                report.append("  - Name: ").append(researcher.getName()).append("\n");
+                report.append("    Specialty: ");
                 if (researcher.getSpecialties() == null || researcher.getSpecialties().isEmpty()) {
                     report.append("None\n");
                 } else {
-                    report.append(String.join(", ", researcher.getSpecialties())).append("\n");
+                    report.append(researcher.getListOfSpecialties()).append("\n");
                 }
             }
         }

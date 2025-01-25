@@ -215,6 +215,7 @@ public class SystemManager {
         double value = scanner.nextDouble();
 
         currentExperience.addData(type, value);
+        dataList.add(new Data(type,value));
         System.out.println("Data added to experience successfully.");
     }
     
@@ -233,6 +234,7 @@ public class SystemManager {
         String type = scanner.next();
 
         currentExperience.addEquipment(name, type);
+        equipmentList.add(new Equipment(name,type));
         System.out.println("Equipment added to experience successfully.");
     }
     
@@ -411,7 +413,7 @@ public class SystemManager {
         }
     
         System.out.println("Current Name: " + researcher.getName());
-        System.out.print("Enter new name (leave blank to keep current): ");
+        System.out.print("Enter new name (write last name to keep current): ");
         String newName = scanner.next();
         if (!newName.isEmpty()) {
             researcher.setName(newName);
