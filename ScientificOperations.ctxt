@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=ScientificOperations
+comment0.text=\r\n\ Write\ a\ description\ of\ interface\ INTERFACE\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=name\ specialty\ id
+comment1.target=void\ addResearcher(java.lang.String,\ java.lang.String,\ int)
+comment2.params=name\ type
+comment2.target=void\ addEquipment(java.lang.String,\ java.lang.String)
+comment3.params=type\ value
+comment3.target=void\ addData(java.lang.String,\ double)
+numComments=4

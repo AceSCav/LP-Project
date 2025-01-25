@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.time.LocalDate;
 import java.io.Serializable;
 
-public class ScientificExperience   implements Serializable{
+public class ScientificExperience   implements Serializable, ScientificOperations{
     public String name;
     public String description;
     public ArrayList<Data> data;
@@ -11,7 +11,9 @@ public class ScientificExperience   implements Serializable{
     public LocalDate startDate;
     
     
-    
+    /**
+    Description: Initializes the experiment with a name, description, and  initial researcher, equipment, and data entries.
+     */
     public ScientificExperience(String name, String description, Researcher researcher, Equipment equipment, Data data)
     {
         this.name = name;
@@ -30,7 +32,10 @@ public class ScientificExperience   implements Serializable{
         }
         startDate = LocalDate.now();
     }
-    
+    /**
+     * Description: Initializes the experiment with a name and description, 
+     * creating empty lists for researchers, equipment, and data.
+     */
     public ScientificExperience(String name, String description)
     {
         this.name = name;
@@ -40,19 +45,33 @@ public class ScientificExperience   implements Serializable{
         this.equipments = new ArrayList<>();
         startDate = LocalDate.now();
     }
-    
+    /**
+     * Returns the experiment's name.
+     */
     public String getName() {
         return name;
     }
+    /**
+     * Sets the experiment's name.
+     */
     public void setName(String name) {
         this.name = name;
     }
+    /**
+     * Returns the experiment's description.
+     */
     public String getDescription() {
         return description;
     }
+    /**
+     * Sets the experiment's description.
+     */
     public void setDescription(String description) {
         this.description = description;
     }
+    /**
+     * Returns the experiment's start date.
+     */
     public LocalDate getStartDate() {
         return startDate;
     }
@@ -60,7 +79,7 @@ public class ScientificExperience   implements Serializable{
     
     
     /**
-     implementar aqui a verificação para se o investigador ja estiver inserido nao inserir novamente
+     Adds a researcher to the experiment if they are not already participating.
      */
     public void addResearcher(String name, String specialty, int id) {
         boolean researcherExists = false;
@@ -94,7 +113,10 @@ public class ScientificExperience   implements Serializable{
             }
         }
     }
-    
+    /**
+     * Removes a researcher from the experiment by their name, specialty, and ID.
+     * Returns true if the researcher is removed, false otherwise.
+     */
     public boolean removeResearcher(String name, String specialty, int id) {
         boolean researcherFound = false;
         Researcher researcherToRemove = null;
@@ -118,7 +140,7 @@ public class ScientificExperience   implements Serializable{
 
     
     /**
-     implementar aqui a verificação para se o equipamento ja estiver inserido nao inserir novamente
+     Adds a piece of equipment to the experiment if it is not already in use.   
      */
     public void addEquipment(String name, String type) {
 
@@ -141,7 +163,9 @@ public class ScientificExperience   implements Serializable{
             System.out.println("Equipment " + name + " is already in the list.");
         }
     }
-    
+    /**
+     * Returns a formatted string of all researchers in the experiment.
+     */
     public String getListResearchers() {
         if (researchers.isEmpty()) {
             return "No researchers are currently in the system.";
@@ -162,7 +186,9 @@ public class ScientificExperience   implements Serializable{
         return sb.toString();
     }
 
-
+    /**
+     * Adds a data entry to the experiment if it is not already present.
+     */
     public void addData(String type,double value){
         
         boolean dataExists = false;
@@ -183,19 +209,28 @@ public class ScientificExperience   implements Serializable{
             System.out.println("Equipment is already in the list.");
             }
         }
-    
+    /**
+     * Returns the list of equipment used.
+     */
     public ArrayList<Equipment> getEquipments(){
         return equipments;
     }  
-        
+    
+    /**
+     * Returns the list of researchers.
+     */
     public ArrayList<Researcher> getResearchers(){
         return researchers;
     }
-    
+    /**
+     * Returns the list of data entries.
+     */ 
     public ArrayList<Data> getData(){
         return data;
     }
-    
+    /**
+     * Returns a formatted string of all data entries in the experiment.
+     */
     public String getListData() {
         if (data.isEmpty()) {
             return "No data has been added to the system.";
@@ -210,7 +245,9 @@ public class ScientificExperience   implements Serializable{
         }
         return sb.toString();
     }
-    
+    /**
+     * Returns a formatted string of all equipment used in the experiment.
+     */
         public String getListEquipment() {
         if (equipments.isEmpty()) {
             return "No equipment is currently in the system.";
@@ -227,7 +264,9 @@ public class ScientificExperience   implements Serializable{
     }
 
         
-    
+    /**
+     * Generates a detailed report of the experiment, including its name, description, start date, researchers, equipment, and data.
+     */
     public String getRelatory() {
         StringBuilder report = new StringBuilder();
         report.append("Scientific Experience Report\n");
@@ -236,7 +275,7 @@ public class ScientificExperience   implements Serializable{
         report.append("Description: ").append(description).append("\n");
         report.append("Start Date: ").append(startDate).append("\n\n");
 
-        // Listar pesquisadores
+        
         report.append("Researchers:\n");
         if (researchers.isEmpty()) {
             report.append("  No researchers are participating in this experience.\n");
@@ -252,7 +291,6 @@ public class ScientificExperience   implements Serializable{
             }
         }
 
-        // Listar equipamentos
         report.append("\nEquipments:\n");
         if (equipments.isEmpty()) {
             report.append("  No equipment is being used in this experience.\n");
@@ -263,7 +301,6 @@ public class ScientificExperience   implements Serializable{
             }
         }
 
-        // Listar dados
         report.append("\nData:\n");
         if (data.isEmpty()) {
             report.append("  No data has been added to this experience.\n");

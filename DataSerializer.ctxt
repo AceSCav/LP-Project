@@ -1,11 +1,16 @@
 #BlueJ class context
 comment0.target=DataSerializer
+comment0.text=\r\n\ The\ DataSerializer\ class\ provides\ static\ methods\ to\ serialize\ objects\ into\ files.\ \r\n\ It\ is\ designed\ to\ handle\ serialization\ for\ different\ types\ of\ objects,\ including\ Data,\ ScientificExperience,\ Researcher,\ and\ Equipment.\r\n
 comment1.params=data\ filename
 comment1.target=void\ serializeData(Data,\ java.lang.String)
+comment1.text=\r\n\ Serializes\ a\ Data\ object\ and\ writes\ it\ to\ a\ file\ specified\ by\ the\ filename.\r\n
 comment2.params=scientificExperience\ filename
 comment2.target=void\ serializeScientificExperience(ScientificExperience,\ java.lang.String)
+comment2.text=\r\n\ Serializes\ a\ ScientificExperience\ object\ and\ writes\ it\ to\ a\ file\ specified\ by\ the\ filename.\r\n
 comment3.params=researcher\ filename
 comment3.target=void\ serializeResearcher(Researcher,\ java.lang.String)
+comment3.text=\r\n\ Serializes\ a\ Researcher\ object\ and\ writes\ it\ to\ a\ file\ specified\ by\ the\ filename.\r\n
 comment4.params=equipment\ filename
 comment4.target=void\ serializeEquipment(Equipment,\ java.lang.String)
+comment4.text=\r\n\ Serializes\ an\ Equipment\ object\ and\ writes\ it\ to\ a\ file\ specified\ by\ the\ filename.\r\n
 numComments=5

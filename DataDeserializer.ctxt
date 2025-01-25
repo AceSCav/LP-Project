@@ -1,11 +1,16 @@
 #BlueJ class context
 comment0.target=DataDeserializer
+comment0.text=\r\n\ The\ DataDeserializer\ class\ provides\ static\ methods\ to\ deserialize\ objects\ from\ files.\ \r\n\ It\ is\ designed\ to\ handle\ deserialization\ for\ various\ types\ of\ objects,\ including\ Data,\ ScientificExperience,\ Equipment,\ and\ Researcher.\r\n
 comment1.params=filename
 comment1.target=Data\ deserializeData(java.lang.String)
+comment1.text=\r\n\ Reads\ and\ deserializes\ a\ Data\ object\ from\ a\ file\ specified\ by\ the\ filename.\r\n
 comment2.params=filename
 comment2.target=ScientificExperience\ deserializeScientificExperience(java.lang.String)
+comment2.text=\r\n\ Reads\ and\ deserializes\ a\ ScientificExperience\ object\ from\ a\ file\ specified\ by\ the\ filename.\r\n
 comment3.params=filename
 comment3.target=Equipment\ deserializeEquipment(java.lang.String)
+comment3.text=\r\n\ Reads\ and\ deserializes\ an\ Equipment\ object\ from\ a\ file\ specified\ by\ the\ filename.\r\n
 comment4.params=filename
 comment4.target=Researcher\ deserializeResearcher(java.lang.String)
+comment4.text=\r\n\ Reads\ and\ deserializes\ a\ Researcher\ object\ from\ a\ file\ specified\ by\ the\ filename.\r\n
 numComments=5
