@@ -179,6 +179,7 @@ public class SystemManager {
         currentExperience = experiences.get(choice - 1);
         System.out.println("You are now managing: " + currentExperience.getName());
     }
+    
     /**
      * Adds a new researcher to the currentExperience after prompting the user for the researcher's name and specialty.
      */
@@ -195,8 +196,10 @@ public class SystemManager {
 
         Researcher researcher = new Researcher(specialty, name);
         currentExperience.addResearcher(researcher.getName(), researcher.getListOfSpecialties(), researcher.getId());
+        researchers.add(researcher);
         System.out.println("Researcher added to experience successfully.");
     }
+    
     /**
      * Adds data to the currentExperience after prompting the user for the data type and value.
      */
@@ -214,6 +217,7 @@ public class SystemManager {
         currentExperience.addData(type, value);
         System.out.println("Data added to experience successfully.");
     }
+    
     /**
      * Adds equipment to the currentExperience after prompting the user for the equipment's name and type.
      */
@@ -231,6 +235,7 @@ public class SystemManager {
         currentExperience.addEquipment(name, type);
         System.out.println("Equipment added to experience successfully.");
     }
+    
     /**
      * Removes a researcher from the currentExperience based on the provided name, specialty, and ID.
      */
@@ -270,6 +275,7 @@ public class SystemManager {
 
         System.out.println(currentExperience.getListResearchers());
     }
+    
     /**
      * Lists all the equipment associated with the currentExperience.
      */
@@ -281,6 +287,7 @@ public class SystemManager {
 
         System.out.println(currentExperience.getListEquipment());
     }
+    
     /**
      * Lists all the data associated with the currentExperience.
      */
@@ -473,6 +480,7 @@ public class SystemManager {
         }
         System.out.println("No researcher found with the given specialty.");
     }
+    
     /**
      * A helper method that searches the list of researchers for a researcher with the specified ID. 
      * If found, the researcher is returned; otherwise, null is returned.
