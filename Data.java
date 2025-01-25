@@ -13,7 +13,7 @@ public class Data implements Serializable
     private double value;
     private LocalDateTime insertDateTime;
     
-
+    
     /**
      * Constructor for objects of class Dados
      */

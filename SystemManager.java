@@ -4,14 +4,19 @@ import java.time.LocalDate;
 
 
 public class SystemManager {
-
+    
     private static List<ScientificExperience> experiences = new ArrayList<>();
     private static List<Researcher> researchers = new ArrayList<>();
     private static List<Data> dataList = new ArrayList<>();
     private static List<Equipment> equipmentList = new ArrayList<>();
     private static Scanner scanner = new Scanner(System.in);
     private static ScientificExperience currentExperience;
-
+     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////     INPUT INICIAL     ////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public static void main(String[] args) {
         while (true) {
             showSystemMenu();
@@ -34,6 +39,9 @@ public class SystemManager {
                     manageSerialization();
                     break;
                 case 6:
+                    manageDeserialization();
+                    break;
+                case 7:
                     exit();
                     return;
                 default:
@@ -48,7 +56,9 @@ public class SystemManager {
         System.out.println("2. Manage Researchers");
         System.out.println("3. Manage Equipment");
         System.out.println("4. Manage Data");
-        System.out.println("5. Exit");
+        System.out.println("5. Manage Serialization");
+        System.out.println("6. Manage Deserialization");
+        System.out.println("7. Exit");
         System.out.print("Enter your choice: ");
     }
 
@@ -58,7 +68,7 @@ public class SystemManager {
 
      //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////     MANAGE EXPERIENCE    ////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -76,8 +86,9 @@ public class SystemManager {
             System.out.println("7. List Researchers");
             System.out.println("8. List Equipment");
             System.out.println("9. List Data");
-            System.out.println("10. Generate Experience Report");
-            System.out.println("11. Back to Main Menu");
+            System.out.println("10. Search Experience By Name");
+            System.out.println("11. Generate Experience Report");
+            System.out.println("12. Back to Main Menu");
             System.out.print("Enter your choice: ");
 
             int choice = getChoice();
@@ -110,9 +121,12 @@ public class SystemManager {
                     listDataInExperience();
                     break;
                 case 10:
-                    generateExperienceReport();
+                    searchExperienceName();
                     break;
                 case 11:
+                    generateExperienceReport();
+                    break;
+                case 12:
                     return;
                 default:
                     System.out.println("Invalid choice. Please try again.");
@@ -121,14 +135,14 @@ public class SystemManager {
     }
 
     private static void createExperience() {
-        System.out.print("Enter Experience Name: ");
-        String name = scanner.next();
-        System.out.print("Enter Experience Description: ");
-        String description = scanner.next();
-        experiences.add(new ScientificExperience(name, description));
-        System.out.println("Experience created successfully.");
+            System.out.print("Enter Experience Name: ");
+            String name = scanner.next();
+            System.out.print("Enter Experience Description: ");
+            String description = scanner.next();
+            experiences.add(new ScientificExperience(name, description));
+            System.out.println("Experience created successfully.");
     }
-
+    
     private static void chooseExperience() {
         if (experiences.isEmpty()) {
             System.out.println("No experiences available. Please create one first.");
@@ -204,7 +218,7 @@ public class SystemManager {
             return;
         }
     
-        // Solicitar os três parâmetros do usuário
+        
         System.out.print("Enter Researcher Name: ");
         String name = scanner.next();
     
@@ -214,7 +228,7 @@ public class SystemManager {
         System.out.print("Enter Researcher ID to Remove: ");
         int id = scanner.nextInt();
     
-        // Chamar o método `removeResearcher` com os três parâmetros
+        
         boolean removed = currentExperience.removeResearcher(name, specialty, id);
         if (removed) {
             System.out.println("Researcher removed successfully.");
@@ -250,6 +264,18 @@ public class SystemManager {
 
         System.out.println(currentExperience.getListData());
     }
+    
+    private static void searchExperienceName() {
+        System.out.print("Enter Researcher Specialty: ");
+        String exName = scanner.next();
+        for (ScientificExperience experience : experiences) {
+            if (experience.getName().equals(exName)) {
+                System.out.println(experience.getRelatory());
+            }
+        }
+        System.out.println("No Scientific Experience found with the given name.");
+    }
+    
 
     private static void generateExperienceReport() {
         if (currentExperience == null) {
@@ -263,7 +289,7 @@ public class SystemManager {
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////     MANAGE RESEARCHERS     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -277,7 +303,9 @@ public class SystemManager {
             System.out.println("2. List All Researchers");
             System.out.println("3. Modify Researcher Information");
             System.out.println("4. Remove Researcher");
-            System.out.println("5. Back to Main Menu");
+            System.out.println("5. Search Researcher By Name");
+            System.out.println("6. Search Researcher By Specialty");
+            System.out.println("7. Back to Main Menu");
             System.out.print("Enter your choice: ");
     
             int choice = getChoice();
@@ -295,6 +323,12 @@ public class SystemManager {
                     removeResearcher();
                     break;
                 case 5:
+                    searchResearcherName();
+                    break;
+                case 6:
+                    searchResearcherSpecialty();
+                    break;
+                case 7:
                     return;
                 default:
                     System.out.println("Invalid choice. Please try again.");
@@ -374,6 +408,26 @@ public class SystemManager {
         researchers.remove(researcher);
         System.out.println("Researcher removed successfully.");
     }
+    private static void searchResearcherName() {
+        System.out.print("Enter Researcher name: ");
+        String rName = scanner.next();
+        for (Researcher researcher : researchers) {
+            if (researcher.getName().equals(rName)) {
+                System.out.println("researcher:" + rName + "/n" + "Specialty: " + researcher.getListOfSpecialties());
+            }
+        }
+        System.out.println("No researcher found with the given name.");
+    }
+    private static void searchResearcherSpecialty() {
+        System.out.print("Enter Researcher Specialty: ");
+        String rSpecialty = scanner.next();
+        for (Researcher researcher : researchers) {
+            if (researcher.getSpecialties().contains(rSpecialty)) {
+                System.out.println("Researcher:" + researcher.getName());
+            }
+        }
+        System.out.println("No researcher found with the given specialty.");
+    }
     
     private static Researcher findResearcherById(int id) {
         for (Researcher researcher : researchers) {
@@ -396,7 +450,9 @@ public class SystemManager {
             System.out.println("3. Modify Equipment Information");
             System.out.println("4. Calibrate Equipment");
             System.out.println("5. Remove Equipment");
-            System.out.println("6. Back to Main Menu");
+            System.out.println("6. Search Equipment By Name");
+            System.out.println("7. Search Equipment By Type");
+            System.out.println("8. Back to Main Menu");
             System.out.print("Enter your choice: ");
     
             int choice = getChoice();
@@ -417,6 +473,12 @@ public class SystemManager {
                     removeEquipment();
                     break;
                 case 6:
+                    searchEquipmentName();
+                    break;
+                case 7:
+                    searchEquipmentType();
+                    break;
+                case 8:
                     return;
                 default:
                     System.out.println("Invalid choice. Please try again.");
@@ -450,8 +512,10 @@ public class SystemManager {
     private static void modifyEquipmentInformation() {
         System.out.print("Enter Equipment Name to Modify: ");
         String name = scanner.next();
+        System.out.print("Enter Equipment Type to Modify: ");
+        String type = scanner.next();
     
-        Equipment equipment = findEquipmentByName(name);
+        Equipment equipment = findEquipmentByTypeName(name,type);
         if (equipment == null) {
             System.out.println("Equipment not found.");
             return;
@@ -477,8 +541,10 @@ public class SystemManager {
     private static void calibrateEquipment() {
         System.out.print("Enter Equipment Name to Calibrate: ");
         String name = scanner.next();
+        System.out.print("Enter Equipment Type to Calibrate: ");
+        String type = scanner.next();
     
-        Equipment equipment = findEquipmentByName(name);
+        Equipment equipment = findEquipmentByTypeName(name, type);
         if (equipment == null) {
             System.out.println("Equipment not found.");
             return;
@@ -491,8 +557,10 @@ public class SystemManager {
     private static void removeEquipment() {
         System.out.print("Enter Equipment Name to Remove: ");
         String name = scanner.next();
+        System.out.print("Enter Equipment Type to Remove: ");
+        String type = scanner.next();
     
-        Equipment equipment = findEquipmentByName(name);
+        Equipment equipment = findEquipmentByTypeName(name, type);
         if (equipment == null) {
             System.out.println("Equipment not found.");
             return;
@@ -501,10 +569,29 @@ public class SystemManager {
         equipmentList.remove(equipment);
         System.out.println("Equipment removed successfully.");
     }
-    
-    private static Equipment findEquipmentByName(String name) {
+    private static void searchEquipmentName() {
+        System.out.print("Enter Equipment name: ");
+        String eName = scanner.next();
         for (Equipment equipment : equipmentList) {
-            if (equipment.getName().equalsIgnoreCase(name)) {
+            if (equipment.getName().equalsIgnoreCase(eName)){
+                System.out.println("Equipment:" + equipment.getName() + "Type:" + equipment.getType());
+            }
+        }
+        System.out.println("Equipment not found with the given name.");
+    }
+    private static void searchEquipmentType() {
+        System.out.print("Enter Equipment Type: ");
+        String eType = scanner.next();
+        for (Equipment equipment : equipmentList) {
+            if (equipment.getType().equalsIgnoreCase(eType)){
+                System.out.println("Equipment:" + equipment.getName());
+            }
+        }
+        System.out.println("Equipment not found with the given type.");
+    }
+    private static Equipment findEquipmentByTypeName(String name, String type) {
+        for (Equipment equipment : equipmentList) {
+            if (equipment.getName().equalsIgnoreCase(name) && equipment.getType().equalsIgnoreCase(type)){
                 return equipment;
             }
         }
@@ -571,10 +658,12 @@ public class SystemManager {
     }
     
     private static void modifyDataInformation() {
-        System.out.print("Enter Data Type to Modify: ");
+        System.out.print("Enter Data Type to Remove: ");
         String type = scanner.next();
-    
-        Data data = findDataByType(type);
+        System.out.print("Enter Data Value to Remove: ");
+        Double value = scanner.nextDouble();
+        
+        Data data = findDataByTypeValue(type,value);
         if (data == null) {
             System.out.println("Data not found.");
             return;
@@ -590,8 +679,10 @@ public class SystemManager {
     private static void removeData() {
         System.out.print("Enter Data Type to Remove: ");
         String type = scanner.next();
-    
-        Data data = findDataByType(type);
+        System.out.print("Enter Data Value to Remove: ");
+        double value = scanner.nextDouble();
+        
+        Data data = findDataByTypeValue(type, value);
         if (data == null) {
             System.out.println("Data not found.");
             return;
@@ -601,9 +692,9 @@ public class SystemManager {
         System.out.println("Data removed successfully.");
     }
     
-    private static Data findDataByType(String type) {
+    private static Data findDataByTypeValue(String type, double value) {
         for (Data data : dataList) {
-            if (data.getType().equalsIgnoreCase(type)) {
+            if (data.getType().equalsIgnoreCase(type) && data.getValue() == value ) {
                 return data;
             }
         }
@@ -615,7 +706,6 @@ public class SystemManager {
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
     private static void manageSerialization() {
         while (true) {
             System.out.println("\nSerialization Menu");
@@ -625,7 +715,7 @@ public class SystemManager {
             System.out.println("4. Serialize Scientific Experience");
             System.out.println("5. Back to Main Menu");
             System.out.print("Enter your choice: ");
-    
+        
             int choice = getChoice();
             switch (choice) {
                 case 1:
@@ -648,7 +738,119 @@ public class SystemManager {
         }
     }
     
-    private static void manageDeserialization() {
+    private static void serializeData() {
+        System.out.print("Enter filename to save data: ");
+        String filename = scanner.next();
+        System.out.print("Do you want to serialize a specific data object? (yes/no): ");
+        String choice = scanner.next().toLowerCase();
+    
+        if ("yes".equals(choice)) {
+            System.out.print("Enter Data Type: ");
+            String type = scanner.next();
+            System.out.print("Enter Data Value to serialize: ");
+            Double value = scanner.nextDouble();
+            Data dataToSerialize = findDataByTypeValue(type,value);
+            if (dataToSerialize != null) {
+                DataSerializer.serializeData(dataToSerialize, filename);
+            } else {
+                System.out.println("Data not found.");
+            }
+        } else {
+            if (currentExperience != null && !currentExperience.getData().isEmpty()) {
+                for (Data data : currentExperience.getData()) {
+                    DataSerializer.serializeData(data, filename);
+                }
+            } else {
+                System.out.println("No data available to serialize.");
+            }
+        }
+    }
+    
+    private static void serializeResearcher() {
+        System.out.print("Enter filename to save researcher: ");
+        String filename = scanner.next();
+        System.out.print("Do you want to serialize a specific researcher? (yes/no): ");
+        String choice = scanner.next().toLowerCase();
+    
+        if ("yes".equals(choice)) {
+            System.out.print("Enter ID of the researcher to serialize: ");
+            int Id = scanner.nextInt();
+            Researcher researcherToSerialize = findResearcherById(Id);
+            if (researcherToSerialize != null) {
+                DataSerializer.serializeResearcher(researcherToSerialize, filename);
+            } else {
+                System.out.println("Researcher not found.");
+            }
+        } else {
+            if (currentExperience != null && !currentExperience.getResearchers().isEmpty()) {
+                for (Researcher researcher : currentExperience.getResearchers()) {
+                    DataSerializer.serializeResearcher(researcher, filename);
+                }
+            } else {
+                System.out.println("No researchers available to serialize.");
+            }
+        }
+    }
+    
+    private static void serializeEquipment() {
+        System.out.print("Enter filename to save equipment: ");
+        String filename = scanner.next();
+        System.out.print("Do you want to serialize a specific equipment? (yes/no): ");
+        String choice = scanner.next().toLowerCase();
+    
+        if ("yes".equals(choice)) {
+            System.out.print("Enter name of the equipment to serialize: ");
+            String name = scanner.next();
+            System.out.print("Enter type of the equipment to serialize: ");
+            String type = scanner.next();
+            
+            Equipment equipmentToSerialize = findEquipmentByTypeName(name,type);
+            if (equipmentToSerialize != null) {
+                DataSerializer.serializeEquipment(equipmentToSerialize, filename);
+            } else {
+                System.out.println("Equipment not found.");
+            }
+        } else {
+            if (currentExperience != null && !currentExperience.getEquipments().isEmpty()) {
+                for (Equipment equipment : currentExperience.getEquipments()) {
+                    DataSerializer.serializeEquipment(equipment, filename);
+                }
+            } else {
+                System.out.println("No equipment available to serialize.");
+            }
+        }
+    }
+    
+    private static void serializeScientificExperience() {
+        System.out.print("Enter filename to save scientific experience: ");
+        String filename = scanner.next();
+        if (currentExperience != null) {
+            // Serialize the scientific experience first
+            DataSerializer.serializeScientificExperience(currentExperience, filename);
+    
+            // Then serialize associated data, equipment, and researchers
+            if (!currentExperience.getData().isEmpty()) {
+                for (Data data : currentExperience.getData()) {
+                    DataSerializer.serializeData(data, filename);
+                }
+            }
+            if (!currentExperience.getResearchers().isEmpty()) {
+                for (Researcher researcher : currentExperience.getResearchers()) {
+                    DataSerializer.serializeResearcher(researcher, filename);
+                }
+            }
+            if (!currentExperience.getEquipments().isEmpty()) {
+                for (Equipment equipment : currentExperience.getEquipments()) {
+                    DataSerializer.serializeEquipment(equipment, filename);
+                }
+            }
+        } else {
+            System.out.println("No scientific experience available to serialize.");
+        }
+    }
+
+    
+        private static void manageDeserialization() {
         while (true) {
             System.out.println("\nDeserialization Menu");
             System.out.println("1. Deserialize Data");
@@ -680,57 +882,12 @@ public class SystemManager {
         }
     }
     
-    private static void serializeData() {
-        System.out.print("Enter filename to save data: ");
-        String filename = scanner.next();
-        if (currentExperience != null && !currentExperience.getData().isEmpty()) {
-            for (Data data : currentExperience.getData()) {
-                DataSerializer.serializeData(data, filename);
-            }
-        } else {
-            System.out.println("No data available to serialize.");
-        }
-    }
-    
-    private static void serializeResearcher() {
-        System.out.print("Enter filename to save researcher: ");
-        String filename = scanner.next();
-        if (currentExperience != null && !currentExperience.getResearchers().isEmpty()) {
-            for (Researcher researcher : currentExperience.getResearchers()) {
-                DataSerializer.serializeResearcher(researcher, filename);
-            }
-        } else {
-            System.out.println("No researchers available to serialize.");
-        }
-    }
-    
-    private static void serializeEquipment() {
-        System.out.print("Enter filename to save equipment: ");
-        String filename = scanner.next();
-        if (currentExperience != null && !currentExperience.getEquipments().isEmpty()) {
-            for (Equipment equipment : currentExperience.getEquipments()) {
-                DataSerializer.serializeEquipment(equipment, filename);
-            }
-        } else {
-            System.out.println("No equipment available to serialize.");
-        }
-    }
-    
-    private static void serializeScientificExperience() {
-        System.out.print("Enter filename to save scientific experience: ");
-        String filename = scanner.next();
-        if (currentExperience != null) {
-            DataSerializer.serializeScientificExperience(currentExperience, filename);
-        } else {
-            System.out.println("No scientific experience available to serialize.");
-        }
-    }
-    
     private static void deserializeData() {
         System.out.print("Enter filename to load data: ");
         String filename = scanner.next();
         Data data = DataDeserializer.deserializeData(filename);
         if (data != null) {
+            // If only data is deserialized, just add it to the data list
             dataList.add(data);
             System.out.println("Data deserialized and added to system.");
         }
@@ -741,6 +898,7 @@ public class SystemManager {
         String filename = scanner.next();
         Researcher researcher = DataDeserializer.deserializeResearcher(filename);
         if (researcher != null) {
+            // If only researcher is deserialized, just add it to the researchers list
             researchers.add(researcher);
             System.out.println("Researcher deserialized and added to system.");
         }
@@ -751,6 +909,7 @@ public class SystemManager {
         String filename = scanner.next();
         Equipment equipment = DataDeserializer.deserializeEquipment(filename);
         if (equipment != null) {
+            // If only equipment is deserialized, just add it to the equipment list
             equipmentList.add(equipment);
             System.out.println("Equipment deserialized and added to system.");
         }
@@ -761,10 +920,34 @@ public class SystemManager {
         String filename = scanner.next();
         ScientificExperience experience = DataDeserializer.deserializeScientificExperience(filename);
         if (experience != null) {
+            // If scientific experience is deserialized, add everything related to it (data, researchers, equipment)
             experiences.add(experience);
             System.out.println("Scientific experience deserialized and added to system.");
+    
+            // Deserialize related data (if any)
+            if (experience.getData() != null && !experience.getData().isEmpty()) {
+                for (Data data : experience.getData()) {
+                    dataList.add(data);
+                }
+                System.out.println("Associated data deserialized and added to system.");
+            }
+
+            if (experience.getResearchers() != null && !experience.getResearchers().isEmpty()) {
+                for (Researcher researcher : experience.getResearchers()) {
+                    researchers.add(researcher);
+                }
+                System.out.println("Associated researchers deserialized and added to system.");
+            }
+
+            if (experience.getEquipments() != null && !experience.getEquipments().isEmpty()) {
+                for (Equipment equipment : experience.getEquipments()) {
+                    equipmentList.add(equipment);
+                }
+                System.out.println("Associated equipment deserialized and added to system.");
+            }
         }
     }
+
 
     
     private static void exit() {

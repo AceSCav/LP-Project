@@ -53,6 +53,10 @@ public class ScientificExperience   implements Serializable{
     public void setDescription(String description) {
         this.description = description;
     }
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+    
     
     
     /**
@@ -67,7 +71,7 @@ public class ScientificExperience   implements Serializable{
                 break;
             }
         }
-
+        
         if (!researcherExists) {
             Researcher newResearcher = new Researcher(name, specialty);
             researchers.add(newResearcher);
@@ -192,7 +196,7 @@ public class ScientificExperience   implements Serializable{
         return data;
     }
     
-        public String getListData() {
+    public String getListData() {
         if (data.isEmpty()) {
             return "No data has been added to the system.";
         }
